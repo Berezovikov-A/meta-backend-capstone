@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest
 from rest_framework.generics import *
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 from .modelattributes import MenuItemAttr, BookingAttr
 
 
@@ -18,4 +19,6 @@ class SingleMenuItemView(MenuItemAttr, RetrieveUpdateDestroyAPIView):
 
 
 class BookingViewSet(BookingAttr, ModelViewSet):
-    pass
+    permission_classes = [
+        IsAuthenticated,
+    ]
